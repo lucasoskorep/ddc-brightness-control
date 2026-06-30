@@ -3,16 +3,11 @@ import Meta from 'gi://Meta';
 import Shell from 'gi://Shell';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
-/** Map of settings key -> callback to run when the shortcut fires. */
 export type KeybindingActions = Record<string, () => void>;
 
-/**
- * Registers the extension's keyboard shortcuts with the window manager and
- * keeps them in sync as their settings change.
- */
 export class KeybindingManager {
-    private _settings: Gio.Settings;
-    private _actions: KeybindingActions;
+    private readonly _settings: Gio.Settings;
+    private readonly _actions: KeybindingActions;
     private _bindings: Map<string, number> = new Map();
 
     constructor(settings: Gio.Settings, actions: KeybindingActions) {

@@ -1,10 +1,9 @@
 import Gio from 'gi://Gio';
 import St from 'gi://St';
 import * as Slider from 'resource:///org/gnome/shell/ui/slider.js';
-import { DEFAULT_VCP_CODE, LOG_PREFIX } from './constants.js';
+import {DEFAULT_VCP_CODE, LOG_PREFIX} from './constants.js';
 import * as Ddcutil from './ddcutil.js';
 
-/** A detected display plus the UI refs and runtime state attached to it. */
 export interface DisplayInfo {
     bus: string;
     name: string;
@@ -13,30 +12,18 @@ export interface DisplayInfo {
     currentValue: number;
     slider: Slider.Slider | null;
     valueLabel: St.Label | null;
-    // Reconciliation state for writes: `sentValue` is the value of the most
-    // recent write handed to ddcutil; `inFlight` is true while that write runs.
     sentValue: number;
     inFlight: boolean;
     reading: boolean;
     updatingFromCode: boolean;
 }
 
-/**
- * Owns the set of detected displays and all brightness operations on them
- * (detection, monitor mapping, reads, and writes via ddcutil).
- *
- * Writes use a reconciliation model rather than debouncing: `currentValue` is
- * the user's target and at most one write per display is ever in flight. When a
- * write finishes, if the target has since moved we immediately send the latest
- * value — so intermediate values are coalesced and we never queue stale writes.
- */
 export class DisplayController {
     private _settings: Gio.Settings;
     private _displays: DisplayInfo[] = [];
     private _detectComplete = false;
     private _disposed = false;
 
-    /** Invoked after detection finishes so the UI can rebuild itself. */
     onDetectComplete: (() => void) | null = null;
 
     constructor(settings: Gio.Settings) {
@@ -55,18 +42,15 @@ export class DisplayController {
         return this._settings.get_string('vcp-code') || DEFAULT_VCP_CODE;
     }
 
-    /** Clear all state back to the pre-detection condition. */
     reset(): void {
         this._displays = [];
         this._detectComplete = false;
     }
 
-    /** Stop issuing further writes. Call before disposal. */
     cleanup(): void {
         this._disposed = true;
     }
 
-    /** Detect displays, map them to monitors, then read their brightness. */
     detect(): void {
         Ddcutil.detectDisplays((parsed) => {
             this._displays = parsed.map((p) => ({
@@ -117,7 +101,10 @@ export class DisplayController {
         return global.display.get_primary_monitor();
     }
 
-    /** The display to act on for global actions, honoring "link displays". */
+    /**
+     * The display to act on for global actions, honoring "link displays".
+     * This should grab the display that the active window is part of for adjusting when not linked
+     */
     getActiveDisplay(): DisplayInfo | null {
         if (this._settings.get_boolean('link-displays')) {
             return this._displays[0] ?? null;

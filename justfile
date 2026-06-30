@@ -38,5 +38,8 @@ live-debug:
 lint:
     pnpm run lint
 
+lint-fix:
+    pnpm run lint --fix
+
 clean:
     pnpm run clean

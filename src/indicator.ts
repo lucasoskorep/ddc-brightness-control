@@ -42,7 +42,6 @@ export class BrightnessIndicator {
         this.rebuildMenu();
     }
 
-    /** The underlying panel button, for adding to the status area. */
     get button(): PanelMenu.Button {
         return this._button;
     }

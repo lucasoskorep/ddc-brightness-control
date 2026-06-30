@@ -1,12 +1,9 @@
 {
-  "name": "ddc-brightness-control",
+  "name": "DDC Brightness Controller",
   "description": "Control display brightness via DDC/CI using ddcutil. Bind keyboard shortcuts or use the panel menu to adjust monitor brightness.",
   "uuid": "ddcbrightness@lucaso.io",
   "settings-schema": "org.gnome.shell.extensions.ddcbrightness",
   "shell-version": [
-    "47",
-    "48",
-    "49",
     "50"
   ]
 }

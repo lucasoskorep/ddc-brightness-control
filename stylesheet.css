@@ -1,8 +1,5 @@
-/* DDC Brightness Control styling */
-
 .ddc-brightness-slider-box {
     padding: 8px 12px;
-    spacing: 8px;
 }
 
 .ddc-brightness-value-label {
@@ -13,7 +10,6 @@
     text-align: right;
 }
 
-/* Custom slider */
 .slider {
     height: 24px;
     border-radius: 12px;
