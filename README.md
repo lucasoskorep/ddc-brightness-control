@@ -14,7 +14,7 @@ This project aims to be a simple and easy to use DDC brightness control plugin f
 
 ## Planned Features?
 
-- Would be nice to get this added to the system status menu at some point isntead of its own dot
+- Would be nice to get this added to the system status menu at some point instead of its own dot
 - Support for direct i2c or better ddc controllers (not ddcutil)
 - You tell me
 

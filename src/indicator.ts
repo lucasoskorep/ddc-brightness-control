@@ -100,6 +100,7 @@ export class BrightnessIndicator {
         menu.addMenuItem(labelRow);
 
         const sliderRow = new PopupMenu.PopupBaseMenuItem({activate: false});
+        sliderRow.add_style_class_name('ddc-brightness-slider');
 
         const slider = new Slider.Slider(display.currentValue / 100);
 

@@ -11,6 +11,7 @@ export interface ParsedDisplay {
 // Run a command asynchronously, capturing stdout. The callback always fires:
 // with stdout on success, or an empty string on failure.
 export function runCommandAsync(args: string[], callback: (stdout: string) => void): void {
+    console.debug(`${LOG_PREFIX} Running: ${args.join(' ')}`);
     try {
         const subprocess = new Gio.Subprocess({
             argv: args,
@@ -21,6 +22,7 @@ export function runCommandAsync(args: string[], callback: (stdout: string) => vo
         subprocess.communicate_utf8_async(null, null, (proc: Gio.Subprocess | null, result: Gio.AsyncResult) => {
             try {
                 const [, stdout] = (proc ?? subprocess).communicate_utf8_finish(result);
+                console.debug(`${LOG_PREFIX} Done: ${stdout.trim().substring(0, 80)}`);
                 callback(stdout);
             } catch (e) {
                 console.error(`${LOG_PREFIX} Command failed: ${e}`);
@@ -29,6 +31,7 @@ export function runCommandAsync(args: string[], callback: (stdout: string) => vo
         });
     } catch (e) {
         console.error(`${LOG_PREFIX} Failed to spawn: ${e}`);
+        callback('');
     }
 }
 

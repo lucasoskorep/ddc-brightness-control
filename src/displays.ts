@@ -53,6 +53,7 @@ export class DisplayController {
 
     detect(): void {
         Ddcutil.detectDisplays((parsed) => {
+            if (this._disposed) return;
             this._displays = parsed.map((p) => ({
                 bus: p.bus,
                 name: p.name,
@@ -67,7 +68,7 @@ export class DisplayController {
                 updatingFromCode: false,
             }));
             this._detectComplete = true;
-            console.log(`${LOG_PREFIX} Found ${this._displays.length} displays`);
+            console.debug(`${LOG_PREFIX} Found ${this._displays.length} displays`);
 
             this._mapMonitorsToDisplays();
             this.onDetectComplete?.();
@@ -87,7 +88,7 @@ export class DisplayController {
                 const idx = monitorManager.get_monitor_for_connector(display.connector);
                 if (idx >= 0) {
                     display.monitorIndex = idx;
-                    console.log(`${LOG_PREFIX} Mapped ${display.name} connector=${display.connector} -> monitor ${idx}`);
+                    console.debug(`${LOG_PREFIX} Mapped ${display.name} connector=${display.connector} -> monitor ${idx}`);
                 }
             }
         }
@@ -196,6 +197,7 @@ export class DisplayController {
 
         Ddcutil.readBrightness(display.bus, this._vcpCode, (value) => {
             display.reading = false;
+            if (this._disposed) return;
             if (value !== null) {
                 display.sentValue = value;
                 this._setTarget(display, value);
