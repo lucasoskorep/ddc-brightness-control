@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema id="org.gnome.shell.extensions.ddcbrightness" path="/org/gnome/shell/extensions/ddcbrightness/">
+        <key name="vcp-code" type="s">
+            <default>'10'</default>
+            <summary>VCP Code</summary>
+            <description>The VCP code for brightness control. Default is 10 (Brightness).</description>
+        </key>
+        <key name="step" type="i">
+            <default>10</default>
+            <summary>Brightness Step</summary>
+            <description>The amount to increase/decrease brightness per key press (1-20).</description>
+        </key>
+        <key name="link-displays" type="b">
+            <default>false</default>
+            <summary>Link Displays</summary>
+            <description>Link brightness of all displays so they move together.</description>
+        </key>
+        <key name="brightness-up" type="as">
+            <default><![CDATA[['<Alt><Shift>F2']]]></default>
+            <summary>Increase Brightness</summary>
+            <description>Keyboard shortcut to increase brightness on all displays.</description>
+        </key>
+        <key name="brightness-down" type="as">
+            <default><![CDATA[['<Alt><Shift>F1']]]></default>
+            <summary>Decrease Brightness</summary>
+            <description>Keyboard shortcut to decrease brightness on all displays.</description>
+        </key>
+    </schema>
+</schemalist>

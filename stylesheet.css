@@ -1,0 +1,27 @@
+/* DDC Brightness Control styling */
+
+.ddc-brightness-slider-box {
+    padding: 8px 12px;
+    spacing: 8px;
+}
+
+.ddc-brightness-value-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    min-width: 40px;
+    text-align: right;
+}
+
+/* Custom slider */
+.slider {
+    height: 24px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.slider .fill-level {
+    height: 24px;
+    border-radius: 12px;
+    background-color: white;
+}
