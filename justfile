@@ -19,7 +19,8 @@ build-schemas:
     cp schemas/gschemas.compiled dist/schemas/
 
 build-package: build
-	cd dist && zip ../{{NAME}}.zip -9r .
+	rm -f {{NAME}}.zip
+	cd dist && zip ../{{NAME}}.zip -9r . -x ./schemas/gschemas.compiled
 
 
 install: build
@@ -43,3 +44,8 @@ lint-fix:
 
 clean:
     pnpm run clean
+
+analyze: build-package
+    uv pip install -U shexli
+    uv run shexli ddcbrightness.zip
+

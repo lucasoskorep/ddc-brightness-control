@@ -41,7 +41,32 @@ Now install the extension from version control
 (until we get to the gnome extension store)
 
 ```bash 
+git clone https://github.com/lucasoskorep/ddc-brightness-control
+cd ddc-brightness-control
+just install
+```
 
+## Development
+
+You need a couple of other things for development ideally
+
+- uv
+- fnm
+
+### Installation
+```bash
+just install
+```
+
+### Linting
+```bash
+just lint
+just lint-fix #(auto fixes what it can via eslint)
+```
+
+### Debugging
+```bash
+just live-debug
 ```
 
 

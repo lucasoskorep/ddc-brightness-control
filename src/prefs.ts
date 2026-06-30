@@ -7,10 +7,8 @@ import { KeybindingEntryRow } from './prefs/keybindings.js';
 const SCHEMA_ID = 'org.gnome.shell.extensions.ddcbrightness';
 
 export default class DDCCBrightnessPreferences extends ExtensionPreferences {
-    _settings?: Gio.Settings;
-
     fillPreferencesWindow(window: Adw.PreferencesWindow): Promise<void> {
-        this._settings = this.getSettings(SCHEMA_ID);
+        const settings = this.getSettings(SCHEMA_ID);
 
         const page = new Adw.PreferencesPage({
             title: _('DDC Brightness Control'),
@@ -26,7 +24,7 @@ export default class DDCCBrightnessPreferences extends ExtensionPreferences {
         const vcpCode = new Adw.EntryRow({
             title: _('VCP Code'),
         });
-        vcpCode.set_text(this._settings!.get_string('vcp-code') ?? '10');
+        vcpCode.set_text(settings.get_string('vcp-code') ?? '10');
         ddcGroup.add(vcpCode);
 
         const step = new Adw.SpinRow({
@@ -55,7 +53,7 @@ export default class DDCCBrightnessPreferences extends ExtensionPreferences {
         keybindingGroup.add(
             new KeybindingEntryRow({
                 title: _('Brightness Up'),
-                settings: this._settings!,
+                settings: settings,
                 bind: 'brightness-up',
             }),
         );
@@ -63,14 +61,14 @@ export default class DDCCBrightnessPreferences extends ExtensionPreferences {
         keybindingGroup.add(
             new KeybindingEntryRow({
                 title: _('Brightness Down'),
-                settings: this._settings!,
+                settings: settings,
                 bind: 'brightness-down',
             }),
         );
 
-        this._settings!.bind('vcp-code', vcpCode, 'text', Gio.SettingsBindFlags.DEFAULT);
-        this._settings!.bind('step', step, 'value', Gio.SettingsBindFlags.DEFAULT);
-        this._settings!.bind('link-displays', linkDisplays, 'active', Gio.SettingsBindFlags.DEFAULT);
+        settings.bind('vcp-code', vcpCode, 'text', Gio.SettingsBindFlags.DEFAULT);
+        settings.bind('step', step, 'value', Gio.SettingsBindFlags.DEFAULT);
+        settings.bind('link-displays', linkDisplays, 'active', Gio.SettingsBindFlags.DEFAULT);
 
         window.add(page);
         return Promise.resolve();

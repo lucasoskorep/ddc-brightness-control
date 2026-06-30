@@ -9,6 +9,7 @@ export class KeybindingManager {
     private readonly _settings: Gio.Settings;
     private readonly _actions: KeybindingActions;
     private _bindings: Map<string, number> = new Map();
+    private _changedIds: number[] = [];
 
     constructor(settings: Gio.Settings, actions: KeybindingActions) {
         this._settings = settings;
@@ -21,13 +22,18 @@ export class KeybindingManager {
         }
 
         for (const name of Object.keys(this._actions)) {
-            this._settings.connect(`changed::${name}`, () => {
-                this._refresh(name);
-            });
+            this._changedIds.push(
+                this._settings.connect(`changed::${name}`, () => {
+                    this._refresh(name);
+                }),
+            );
         }
     }
 
     disable(): void {
+        this._changedIds.forEach((id) => this._settings.disconnect(id));
+        this._changedIds = [];
+
         this._bindings.forEach((_, key) => {
             Main.wm.removeKeybinding(key);
         });

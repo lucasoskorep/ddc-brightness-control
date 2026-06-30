@@ -7,18 +7,19 @@ import { KeybindingManager } from './keybindings.js';
 import { BrightnessIndicator } from './indicator.js';
 
 export default class DDCCBrightness extends Extension {
-    private _settings: Gio.Settings;
+    private _settings: Gio.Settings | null = null;
     private _controller: DisplayController | null = null;
     private _indicator: BrightnessIndicator | null = null;
     private _keybindings: KeybindingManager | null = null;
 
     constructor(metadata: ExtensionMetadata) {
         super(metadata);
-        this._settings = this.getSettings(SCHEMA_ID);
     }
 
     enable() {
         console.log(`${LOG_PREFIX} Enabling extension`);
+
+        this._settings = this.getSettings(SCHEMA_ID);
 
         this._controller = new DisplayController(this._settings);
         this._controller.onDetectComplete = () => this._indicator?.rebuildMenu();
@@ -55,5 +56,6 @@ export default class DDCCBrightness extends Extension {
 
         this._controller = null;
         this._indicator = null;
+        this._settings = null;
     }
 }
