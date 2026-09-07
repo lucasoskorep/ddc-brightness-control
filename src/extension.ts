@@ -1,6 +1,6 @@
 import Gio from 'gi://Gio';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import {Extension, ExtensionMetadata} from 'resource:///org/gnome/shell/extensions/extension.js';
+import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 import { ROLE, SCHEMA_ID, LOG_PREFIX } from './constants.js';
 import { DisplayController } from './displays.js';
 import { KeybindingManager } from './keybindings.js';
@@ -11,10 +11,6 @@ export default class DDCCBrightness extends Extension {
     private _controller: DisplayController | null = null;
     private _indicator: BrightnessIndicator | null = null;
     private _keybindings: KeybindingManager | null = null;
-
-    constructor(metadata: ExtensionMetadata) {
-        super(metadata);
-    }
 
     enable() {
         console.log(`${LOG_PREFIX} Enabling extension`);
