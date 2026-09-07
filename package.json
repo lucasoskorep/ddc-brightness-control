@@ -2,6 +2,7 @@
   "name": "ddcbrightness",
   "version": "0.1.0",
   "description": "A GNOME Extension to control display brightness via DDC/CI using ddcutil",
+  "packageManager": "pnpm@12.3.4",
   "type": "module",
   "private": true,
   "author": "Lucas Oskorep <lucas.oskorep@gmail.com>",
