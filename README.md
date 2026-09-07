@@ -38,36 +38,32 @@ reboot
 
 ## Installation
 
-Pick whichever method fits you. All three install the same extension — the
-store and manager routes are the easiest, building from source gives you the
-latest commits.
+Pick whichever method fits you. The store route is the easiest, building from
+source gives you the latest commits.
 
-### 1. GNOME Extensions Website (easiest)
+### 1. GNOME Extensions Store (easiest)
 
 Head to the listing and click **Install**:
 
 <https://extensions.gnome.org/extension/10312/ddc-brightness-controller/>
 
-Clicking Install opens the browser connector. If prompted, install the
-"Shell Extension Manager" browser extension for your browser, approve the
-connection, and the extension installs straight into your running session.
+Alternatively, search for **"DDC Brightness Controller"** in the
+[Extensions](https://github.com/mattjakeman/gnome-extensions) manager app.
 
-### 2. GNOME Extensions Manager App
-
-Search for **"DDC Brightness Controller"** in the
-[Extensions](https://flathub.org/apps/details/com.mattjakeman.GNOME.Extensions)
-app (from Flathub) and hit install. On X11 the same app also lets you install
-directly from the website link above.
-
-### 3. From Source (git clone)
+### 2. From Source (git clone)
 
 Builds the extension locally and drops it into your user's extension dir.
-Requires [just](https://github.com/casey/just) as the command runner.
+Requires [just](https://github.com/casey/just) as the command runner, plus the
+same build toolchain used for development (see [Development](#development)):
+`fnm` for a Node runtime (the build runs on Node via pnpm) and `glib2` for
+`glib-compile-schemas`.
 
 Arch Linux:
 
 ```bash
-sudo pacman -S git just
+sudo pacman -S git just fnm glib2
+fnm install
+fnm use
 ```
 
 Clone and install:
