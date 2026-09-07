@@ -48,7 +48,7 @@ Head to the listing and click **Install**:
 <https://extensions.gnome.org/extension/10312/ddc-brightness-controller/>
 
 Alternatively, search for **"DDC Brightness Controller"** in the
-[Extensions](https://github.com/mattjakeman/gnome-extensions) manager app.
+[Extensions Manager](https://github.com/mattjakeman/gnome-extensions) app.
 
 ### 2. From Source (git clone)
 
@@ -61,9 +61,7 @@ same build toolchain used for development (see [Development](#development)):
 Arch Linux:
 
 ```bash
-sudo pacman -S git just fnm glib2
-fnm install
-fnm use
+sudo pacman -S git just fnm glib2  # fnm needs its shell hook on PATH: https://github.com/Schniz/fnm#shell-setup
 ```
 
 Clone and install:
@@ -71,6 +69,8 @@ Clone and install:
 ```bash
 git clone https://github.com/lucasoskorep/ddc-brightness-control
 cd ddc-brightness-control
+fnm install
+fnm use
 just install
 ```
 
