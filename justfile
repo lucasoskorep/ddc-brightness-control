@@ -4,7 +4,7 @@ DOMAIN:="lucaso.io"
 FULL_NAME:=NAME + "@" + DOMAIN
 
 packages:
-	npx --yes corepack pnpm install
+	pnpm install
 
 build: packages && build-schemas
     rm -rf dist/*
