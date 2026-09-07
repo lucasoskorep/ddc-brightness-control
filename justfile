@@ -2,14 +2,13 @@ set dotenv-load
 NAME:="ddcbrightness"
 DOMAIN:="lucaso.io"
 FULL_NAME:=NAME + "@" + DOMAIN
-PNPM:="npx --yes corepack pnpm"
 
 packages:
-	{{PNPM}} install
+	npx --yes corepack pnpm install
 
 build: packages && build-schemas
     rm -rf dist/*
-    {{PNPM}} run build
+    pnpm run build
     cp metadata.json dist/
     cp stylesheet.css dist/
     mkdir -p dist/schemas
@@ -38,13 +37,13 @@ live-debug:
     journalctl /usr/bin/gnome-shell -f -o cat | tee debug.log
 
 lint:
-    {{PNPM}} run lint
+    pnpm run lint
 
 lint-fix:
-    {{PNPM}} run lint --fix
+    pnpm run lint --fix
 
 clean:
-    {{PNPM}} run clean
+    pnpm run clean
 
 analyze: build-package
     uv pip install -U shexli
