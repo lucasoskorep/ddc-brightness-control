@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - eslint-plugin-jsdoc@65.3.4

@@ -5,6 +5,7 @@
   "url": "https://github.com/lucasoskorep/ddc-brightness-control",
   "settings-schema": "org.gnome.shell.extensions.ddcbrightness",
   "shell-version": [
-    "50"
+    "50",
+    "51"
   ]
 }

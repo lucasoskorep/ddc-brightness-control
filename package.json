@@ -1,6 +1,6 @@
 {
   "name": "ddcbrightness",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A GNOME Extension to control display brightness via DDC/CI using ddcutil",
   "packageManager": "pnpm@12.3.4",
   "type": "module",
@@ -14,11 +14,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@girs/gjs": "^4.7.0",
-    "@girs/gnome-shell": "^50.0.4",
-    "eslint": "^10.10.0",
-    "eslint-plugin-jsdoc": "^64.3.6",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.69.0"
+    "@girs/adw-1": "^5.5.0",
+    "@girs/clutter-51": "^5.5.0",
+    "@girs/gio-2.0": "^5.5.0",
+    "@girs/gjs": "^5.5.0",
+    "@girs/glib-2.0": "^5.5.0",
+    "@girs/gobject-2.0": "^5.5.0",
+    "@girs/gtk-4.0": "^5.5.0",
+    "@girs/meta-51": "^5.5.0",
+    "@girs/shell-51": "^5.5.0",
+    "@girs/st-51": "^5.5.0",
+    "eslint": "^10.12.0",
+    "eslint-plugin-jsdoc": "^65.3.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.2"
   }
 }
